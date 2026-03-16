@@ -39,19 +39,15 @@ function triggerChaos() {
 }
 
 window.addEventListener("load", () => {
-
   const originalText = document.body.innerText;
 
   setTimeout(() => {
-
     const RealObserver = window.MutationObserver;
 
     const observer = new RealObserver(() => {
-
       if (document.body.innerText !== originalText) {
         triggerChaos();
       }
-
     });
 
     observer.observe(document.body, {
@@ -61,14 +57,12 @@ window.addEventListener("load", () => {
     });
 
     const scriptWatcher = new RealObserver(() => {
-
       const scriptStillExists =
         document.querySelector('script[src="script.js"]');
 
       if (!scriptStillExists) {
         triggerChaos();
       }
-
     });
 
     scriptWatcher.observe(document.head, {
@@ -77,29 +71,8 @@ window.addEventListener("load", () => {
     });
 
   }, 500);
-
 });
 
-  observer.observe(document.body, {
-    childList: true,
-    characterData: true,
-    subtree: true
-  });
-
-  const scriptWatcher = new RealObserver(() => {
-    const scriptStillExists =
-      document.querySelector('script[src="script.js"]');
-
-    if (!scriptStillExists) {
-      triggerChaos();
-    }
-  });
-
-  scriptWatcher.observe(document.head, {
-    childList: true,
-    subtree: true
-  });
-});
 let heartbeat = Date.now();
 
 setInterval(() => {
