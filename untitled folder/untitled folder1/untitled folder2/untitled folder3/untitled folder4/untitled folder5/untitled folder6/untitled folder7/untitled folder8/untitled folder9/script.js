@@ -100,3 +100,38 @@ window.addEventListener("load", () => {
     subtree: true
   });
 });
+let heartbeat = Date.now();
+
+setInterval(() => {
+  heartbeat = Date.now();
+}, 200);
+
+setInterval(() => {
+  if (Date.now() - heartbeat > 1000) {
+
+    document.documentElement.innerHTML = `
+      <style>
+        body {
+          background: black;
+          color: red;
+          font-family: monospace;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          text-align: center;
+          margin: 0;
+        }
+        h1 { font-size: 50px; }
+        p { font-size: 18px; }
+      </style>
+
+      <div>
+        <h1>nice try.</h1>
+        <p>disabling javascript won't help you.</p>
+        <p>the answer is still no.</p>
+      </div>
+    `;
+
+  }
+}, 1000);
